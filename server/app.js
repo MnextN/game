@@ -14,7 +14,7 @@ const registrationRouterApi = require('./routes/api/registration.route');
 config(app);
 
 // routing
-app.use('/registrater', registrationRouterApi);
+app.use('/register', registrationRouterApi);
 app.use('/login', loginRouterApi);
 app.use('/logout', logoutRouterApi);
 

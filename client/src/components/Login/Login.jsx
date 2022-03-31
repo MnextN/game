@@ -11,9 +11,7 @@ export const Login = () => {
 
     const onSubmit = async (fields) => {
         try {
-            const {
-                data: { user },
-            } = await loginAxios(fields);
+            const user = await loginAxios(fields);
             localStorage.setItem("user", JSON.stringify(user));
             navigate("/");
         } catch (error) {

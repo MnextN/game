@@ -13,7 +13,7 @@ router.post('/', authChecker, async (req, res) => {
       const validPassword = await bcrypt.compare(user_password, user.user_password);
       if (validPassword) {
         req.session.user = user;
-        return res.status(200).json(newUser);
+        return res.status(200).json(user);
       }
       return res.status(404).json({message: 'invalid'});
     }

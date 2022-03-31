@@ -31,7 +31,7 @@ export const Register = () => {
                         type="email"
                         {...register("user_email")}
                         className="form-control"
-                        required autocomplete="off"
+                        required autoComplete="off"
                     />
                 </div>
                 <div className="col-md-6">
@@ -45,8 +45,8 @@ export const Register = () => {
                         type="text"
                         {...register("user_name")}
                         className="form-control"
-                        required pattern="[A-Za-z]\w+" minlength="4"
-                        title="Латинские буквы, цифры и _" autocomplete="off"
+                        required pattern="[A-Za-z]\w+" minLength="4"
+                        title="Латинские буквы, цифры и _" autoComplete="off"
                     />
                 </div>
                 <div className="col-md-6">
@@ -60,8 +60,8 @@ export const Register = () => {
                         type="password"
                         {...register("user_password")}
                         className="form-control"
-                        required minlength="4"
-                        autocomplete="off"
+                        required minLength="4"
+                        autoComplete="off"
                     />
                 </div>
                 <div className="col-md-6">
@@ -75,8 +75,8 @@ export const Register = () => {
                         type="password"
                         {...register("user_password_repit")}
                         className="form-control"
-                        required minlength="4"
-                        autocomplete="off"
+                        required minLength="4"
+                        autoComplete="off"
                     />
                 </div>
                 <div className="col-12 mt-4 d-flex mb-4 align-items-center">
