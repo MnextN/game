@@ -5,9 +5,17 @@ import {  useNavigate } from "react-router";
 import {loginAxios} from "../../axios/login";
 
 export const Login = () => {
+
+    const navigate = useNavigate();
+    useEffect(()=>{
+        if(localStorage.getItem('user')){
+            navigate('/')
+        }
+    })
+
     const { register, handleSubmit } = useForm();
     const [message, setMessage] = useState(null);
-    const navigate = useNavigate();
+
 
     const onSubmit = async (fields) => {
         try {

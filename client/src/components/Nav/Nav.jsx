@@ -10,7 +10,7 @@ function Nav(props) {
 
   const logout = async () => {
     const data = await logoutAxios();
-    console.log(data.data.url)
+    localStorage.clear()
     navigate(data.data.url)
   };
 
