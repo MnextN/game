@@ -1,32 +1,66 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import {useNavigate} from "react-router";
-import {logoutAxios} from "../../axios/logout";
-
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+import { logoutAxios } from '../../axios/logout';
 
 function Nav(props) {
+    const navigate = useNavigate();
 
-  const navigate = useNavigate()
+    const logout = async () => {
+        const data = await logoutAxios();
+        localStorage.clear();
+        navigate(data.data.url);
+    };
 
-  const logout = async () => {
-    const data = await logoutAxios();
-    localStorage.clear()
-    navigate(data.data.url)
-  };
-
-  return (
-    <nav>
-      <div className="nav-wrapper">
-        <Link to='/' className="brand-logo right">Eagles!</Link>
-        <ul id="nav-mobile" className="left hide-on-med-and-down">
-          <li><Link to='/'>Home</Link></li>
-          <li><Link to='/users'>Users</Link></li>
-          <li><Link to='/students'>Students</Link></li>
-          <li><button onClick={logout}>logout</button></li>
-        </ul>
-      </div>
-    </nav>
-  );
+    return (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container">
+                <NavLink to="/" className="navbar-brand">
+                    СВОЯ ИГРА
+                </NavLink>
+                <div
+                    className="collapse navbar-collapse"
+                    id="navbarNavAltMarkup"
+                >
+                    <div className="navbar-nav">
+                        <li>
+                            <NavLink className="nav-item nav-link" to="/">
+                                Главная
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="nav-item nav-link" to="/game">
+                                Игра
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                className="nav-item nav-link"
+                                to="/register"
+                            >
+                                Регистрация
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="nav-item nav-link" to="/login">
+                                Войти
+                            </NavLink>
+                        </li>
+                        <li>
+                            <span
+                                style={{ cursor: 'pointer' }}
+                                className="nav-item nav-link"
+                                onClick={logout}
+                                to="/"
+                            >
+                                Выйти
+                            </span>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    );
 }
 
 export default Nav;
