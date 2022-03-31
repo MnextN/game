@@ -10,8 +10,8 @@ import Home from '../Home/Home';
 import Error404 from '../Error404/Error404';
 import GameArea from "../GameArea/GameArea";
 import Profile from "../Profile/Profile";
-import Register from "../Register/Register";
-import Login from "../Login/Login";
+import {Login} from "../Login/Login";
+import {Register} from "../Register/Register";
 
 
 
