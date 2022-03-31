@@ -17,7 +17,7 @@ router.post('/', authChecker, async (req, res) => {
       }
       return res.status(404).json({message: 'invalid'});
     }
-    return res.status(404).json({message: 'invalid'});
+    return res.status(404).json({message: 'invalid email or password'});
   } catch (err) {
     return res.status(500).json(err);
   }
