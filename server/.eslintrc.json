@@ -6,15 +6,15 @@
         "node": true,
         "jest": true
     },
-    "extends": ["airbnb-base", "prettier"],
+    "extends": [],
     "parserOptions": {
         "ecmaVersion": 12
     },
     "rules": {
         "func-names": ["error", "never"],
-        "no-console": "off",
+        "no-console": "off"
         //"no-plusplus": 0,
-        "prettier/prettier": "error"
+
     },
-    "plugins": ["prettier"]
+    "plugins": []
 }
