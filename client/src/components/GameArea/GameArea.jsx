@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import GameQuestion from '../GameQuestion/GameQuestion';
 import style from './GameArea.module.css';
+import { logoutAxios } from '../../axios/game';
 
 function GameArea(props) {
+
+    const [question,setQuestion] = useState([])
+
+    useEffect(()=>{
+        async function getGame(){
+            const res = await logoutAxios
+            setQuestion(res)
+        }
+        getGame()
+    },[])
+
+    console.log(question);
+
     const topics = [
         { id: 1, topic_name: 'Про Эльбрус' },
         { id: 2, topic_name: 'Животные' },
