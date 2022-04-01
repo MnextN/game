@@ -4,21 +4,17 @@ import style from './GameArea.module.css';
 import { logoutAxios } from '../../axios/game';
 
 function GameArea(props) {
+    const [question, setQuestion] = useState([]);
 
-
-    const [question,setQuestion] = useState([])
-
-    useEffect(()=>{
-        async function getGame(){
-            const res = await logoutAxios()
-            setQuestion(res.data)
+    useEffect(() => {
+        async function getGame() {
+            const res = await logoutAxios();
+            setQuestion(res.data);
             console.log(question);
         }
-        getGame()
-    },[])
 
-
-
+        getGame();
+    }, []);
 
     return (
         <div className="container col-6">

@@ -31,8 +31,7 @@ export const Login = () => {
                     <label
                         htmlFor="inputEmail4"
                         style={{ color: 'black' }}
-                        className="form-label"
-                    >
+                        className="form-label">
                         E-mail:
                     </label>
                     <input
@@ -46,8 +45,7 @@ export const Login = () => {
                     <label
                         htmlFor="inputPassword4"
                         style={{ color: 'black' }}
-                        className="form-label"
-                    >
+                        className="form-label">
                         Введите пароль:
                     </label>
                     <input
