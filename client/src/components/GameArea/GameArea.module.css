@@ -1,0 +1,26 @@
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.trmain {
+    text-align: center;
+    height: 150px;
+    vertical-align: middle;
+}
+
+.tablemain {
+    border: 2px solid black;
+}
+
+.full {
+    width: 100%;
+    height: 100%;
+}
+
+.thborder {
+    border-bottom: 2px solid black;
+}
