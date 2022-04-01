@@ -27,14 +27,15 @@ router
                     user_password: hashedPassword,
                 });
                 if (newUser) {
-                    req.session.user = newUser;
                     return res.status(200).json(newUser);
                 }
                 return res
                     .status(404)
                     .json({ message: 'Неверный пароль или email' });
             } catch (err) {
-                return res.status(500).json(err);
+
+                return res.status(500).json({ message: 'Неверный email' });
+
             }
         } catch (err) {
             return res.status(500).json(err);
@@ -42,17 +43,24 @@ router
     })
     .put(async (req, res) => {
         const { user_name, user_email } = req.body;
-        const { email } = req.session.user;
+        const email = req.session.user.user_email;
+        console.log('session email', email);
         const olduser = await User.findOne({
             where: { user_email },
         });
-        if (!olduser) {
+        console.log('old', olduser);
+        if (!olduser || req.session.user.id === olduser.id) {
+            console.log('user not found');
+
             try {
                 const updateUser = await User.update(
                     { user_name, user_email },
                     { where: { user_email: email } }
                 );
                 if (updateUser) {
+
+                    req.session.destroy();
+                    res.clearCookie('user_sid');
                     return res.status(200).json(updateUser);
                 }
                 return res.status(404).json({ message: 'Неверный email' });

@@ -1,8 +1,9 @@
-import { axios } from "./index";
+
+import { axios } from './index';
 
 export const profileEditAxios = async (data) => {
     try {
-        const response = await axios.put("register", data);
+        const response = await axios.put('register', data);
         return response;
     } catch (error) {
         console.log(error);
@@ -11,11 +12,12 @@ export const profileEditAxios = async (data) => {
 };
 
 export const profileDeleteAxios = async (data) => {
-  try {
-      const response = await axios.delete("register", data);
-      return response;
-  } catch (error) {
-      console.log(error);
-      throw error;
-  }
+    try {
+        const response = await axios.delete('register', data);
+        return response;
+    } catch (error) {
+        console.log(error);
+        throw error;
+    }
+
 };
