@@ -1,13 +1,11 @@
 import React from 'react';
 
 function Home(props) {
-    return (
-        <>
-            <div className="container">
-                <h1>Home</h1>
-            </div>
-        </>
-    );
+  return (
+    <h1>
+      Home
+    </h1>
+  );
 }
 
 export default Home;
