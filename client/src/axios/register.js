@@ -5,7 +5,6 @@ export const registerAxios = async (fields) => {
         const data = await axios.post('register', fields, {
             withCredentials: true
         });
-        console.log(data);
         return data;
     } catch (error) {
         console.log(error);

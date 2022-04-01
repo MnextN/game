@@ -38,8 +38,9 @@ function GameQuestion({ question }) {
             question.question_answer.toLowerCase() ===
             answerInput.current.value.toLowerCase()
         ) {
-            console.log('dispatch closemodal');
             dispatch({ type: UPDATE_USER, payload: question.question_price });
+        } else {
+            dispatch({ type: UPDATE_USER, payload: -question.question_price });
         }
         dispatch({ type: UPDATE_QUESTION, payload: question });
         setIsOpened(false);

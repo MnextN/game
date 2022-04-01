@@ -17,62 +17,60 @@ function GameArea(props) {
         async function getGame() {
             const res = await logoutAxios();
             const restopics = await topicAxios();
+            user.points = 0;
             setTopics(() => restopics.data);
             dispatch({ type: INIT_QUESTIONS, payload: res.data });
-            console.log('question', questions);
-            console.log('topic', topics);
-            console.log('backotvet', restopics.data);
         }
 
         getGame();
     }, [dispatch]);
 
     return (
-      <div className="container col-6">
-          <h1 className="text-center mb-5">СВОЯ ИГРА</h1>
-          <h2 className="text-center mb-5">Ваши очки:{user.points}</h2>
+        <div className="container col-6">
+            <h1 className="text-center mb-5">СВОЯ ИГРА</h1>
+            <h2 className="text-center mb-5">Ваши очки:{user.points}</h2>
 
-          <table className={`table ${style.tablemain}`}>
-              <tbody>
-              {topics.length ? (
-                topics.map((topic) => {
-                    return (
-                      <tr
-                        className={`${style.trmain} ${style.thborder} `}
-                        key={topic.id}>
-                          <th scope="row" className="">
-                              <h2>{topic.topic_name}</h2>
-                          </th>
-                          {questions.filter(
-                            (question) =>
-                              question.id_topic === topic.id
-                          ).length ? (
-                            questions
-                              .filter(
-                                (question) =>
-                                  question.id_topic ===
-                                  topic.id
-                              )
-                              .map((question) => (
-                                <GameQuestion
-                                  key={question.id}
-                                  question={question}
-                                />
-                              ))
-                          ) : (
-
-                            <th><h2>NO TOPIC DATA IS LOADED</h2></th>
-
-                          )}
-                      </tr>
-                    );
-                })
-              ) : (
-                <td>NO GAME DATA IS LOADED</td>
-              )}
-              </tbody>
-          </table>
-      </div>
+            <table className={`table ${style.tablemain}`}>
+                <tbody>
+                    {topics.length ? (
+                        topics.map((topic) => {
+                            return (
+                                <tr
+                                    className={`${style.trmain} ${style.thborder} `}
+                                    key={topic.id}>
+                                    <th scope="row" className="">
+                                        <h2>{topic.topic_name}</h2>
+                                    </th>
+                                    {questions.filter(
+                                        (question) =>
+                                            question.id_topic === topic.id
+                                    ).length ? (
+                                        questions
+                                            .filter(
+                                                (question) =>
+                                                    question.id_topic ===
+                                                    topic.id
+                                            )
+                                            .map((question) => (
+                                                <GameQuestion
+                                                    key={question.id}
+                                                    question={question}
+                                                />
+                                            ))
+                                    ) : (
+                                        <th>
+                                            <h2>NO TOPIC DATA IS LOADED</h2>
+                                        </th>
+                                    )}
+                                </tr>
+                            );
+                        })
+                    ) : (
+                        <td>NO GAME DATA IS LOADED</td>
+                    )}
+                </tbody>
+            </table>
+        </div>
     );
 }
 

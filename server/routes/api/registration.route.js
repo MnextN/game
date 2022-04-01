@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
 
+
 router.route('/')
   .post(async (req, res) => {
     try {
@@ -22,11 +23,10 @@ router.route('/')
           user_email,
           user_password: hashedPassword,
         }); if (newUser) {
-          req.session.user = newUser;
           return res.status(200).json(newUser);
         } return res.status(404).json({message: 'Неверный пароль или email'});
       } catch (err) {
-        return res.status(500).json(err)
+        return res.status(500).json({message: 'Неверный email'})
       }
     } catch (err) {
       return res.status(500).json(err);
@@ -60,6 +60,5 @@ router.route('/')
       return res.status(500).json(err);
     }
   });
-
 
 module.exports = router;
