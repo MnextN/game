@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
-const authChecker = require('../../middleware/authChecker');
 
-router.post('/', authChecker, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { user_email, user_password, } = req.body;
     const user = await User.findOne({
@@ -15,9 +14,9 @@ router.post('/', authChecker, async (req, res) => {
         req.session.user = user;
         return res.status(200).json(user);
       }
-      return res.status(404).json({message: 'invalid'});
+      return res.status(404).json({message: 'Неверный пароль'});
     }
-    return res.status(404).json({message: 'invalid email or password'});
+    return res.status(404).json({message: 'Неверный пароль или email'});
   } catch (err) {
     return res.status(500).json(err);
   }
