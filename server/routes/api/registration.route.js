@@ -27,15 +27,14 @@ router
                     user_password: hashedPassword,
                 });
                 if (newUser) {
-                    req.session.user = newUser;
                     return res.status(200).json(newUser);
                 }
                 return res.status(404).json({ message: 'invalid' });
             } catch (err) {
-                return res.status(500).json(err);
+                return res.status(500).json({ message: 'invalid' });
             }
         } catch (err) {
-            return res.status(500).json(err);
+            return res.status(500).json({ message: 'invalid' });
         }
     })
     .delete(async (req, res) => {
