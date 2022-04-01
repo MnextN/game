@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import style from './GameQuestion.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { UPDATE_QUESTION } from '../../redux/actionTypes/questionsAT';
+import { UPDATE_USER } from '../../redux/actionTypes/usersAT';
 
 function GameQuestion({ question }) {
     const [isOpened, setIsOpened] = useState(false);
     const [wasClosed, setWasClosed] = useState(false);
     const [timer, setTimer] = useState(10);
+    const answerInput = useRef();
+
+    const dispatch = useDispatch();
+    const { questions } = useSelector((state) => state.questionsReducer);
+    const { user } = useSelector((state) => state.usersReducer);
 
     const openModal = () => {
         setIsOpened(true);
@@ -20,10 +28,18 @@ function GameQuestion({ question }) {
     };
 
     const closeModal = () => {
+        console.log(question);
+        if (
+            question.question_answer.toLowerCase() ===
+            answerInput.current.value.toLowerCase()
+        ) {
+            console.log('dispatch closemodal');
+            dispatch({ type: UPDATE_USER, payload: question.question_price });
+        }
+        dispatch({ type: UPDATE_QUESTION, payload: question });
         setIsOpened(false);
         setWasClosed(true);
     };
-
     return (
         <>
             <td
@@ -31,19 +47,16 @@ function GameQuestion({ question }) {
                     !wasClosed
                         ? `${style.tdmain} ${style.tablemain} table-primary`
                         : `${style.tdmain} ${style.tablemain} table-danger`
-                }
-            >
+                }>
                 <div
                     className={wasClosed ? `${style.hidden}` : `${style.full}`}
-                    onClick={openModal}
-                >
+                    onClick={openModal}>
                     <h1>{question.question_price}</h1>
                 </div>
                 <div
                     className={isOpened ? `${style.visible} modal` : `modal`}
                     tabIndex="-1"
-                    role="dialog"
-                >
+                    role="dialog">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
@@ -54,8 +67,7 @@ function GameQuestion({ question }) {
                                     type="button"
                                     onClick={closeModal}
                                     className="close"
-                                    aria-label="Close"
-                                >
+                                    aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -67,6 +79,7 @@ function GameQuestion({ question }) {
                                         <h5>Ваш ответ:</h5>
                                     </label>
                                     <input
+                                        ref={answerInput}
                                         type="text"
                                         className="form-control mt-2"
                                         id={`answer${question.id}`}
@@ -78,15 +91,13 @@ function GameQuestion({ question }) {
                             <div className="modal-footer">
                                 <button
                                     type="button"
-                                    className="btn btn-primary"
-                                >
+                                    className="btn btn-primary">
                                     Ответить
                                 </button>
                                 <button
                                     type="button"
                                     onClick={closeModal}
-                                    className="btn btn-secondary"
-                                >
+                                    className="btn btn-secondary">
                                     Не знаю
                                 </button>
                             </div>

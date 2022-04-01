@@ -9,6 +9,7 @@ import GameArea from '../GameArea/GameArea';
 import Profile from '../Profile/Profile';
 import { Login } from '../Login/Login';
 import { Register } from '../Register/Register';
+import GameQuestion from '../GameQuestion/GameQuestion';
 
 function App() {
     return (
