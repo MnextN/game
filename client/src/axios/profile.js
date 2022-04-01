@@ -1,3 +1,4 @@
+
 import { axios } from './index';
 
 export const profileEditAxios = async (data) => {
@@ -18,4 +19,5 @@ export const profileDeleteAxios = async (data) => {
         console.log(error);
         throw error;
     }
+
 };

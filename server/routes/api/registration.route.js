@@ -33,7 +33,9 @@ router
                     .status(404)
                     .json({ message: 'Неверный пароль или email' });
             } catch (err) {
+
                 return res.status(500).json({ message: 'Неверный email' });
+
             }
         } catch (err) {
             return res.status(500).json(err);
@@ -49,12 +51,14 @@ router
         console.log('old', olduser);
         if (!olduser || req.session.user.id === olduser.id) {
             console.log('user not found');
+
             try {
                 const updateUser = await User.update(
                     { user_name, user_email },
                     { where: { user_email: email } }
                 );
                 if (updateUser) {
+
                     req.session.destroy();
                     res.clearCookie('user_sid');
                     return res.status(200).json(updateUser);

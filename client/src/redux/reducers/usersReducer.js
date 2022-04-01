@@ -1,3 +1,4 @@
+
 import { UPDATE_USER, INIT_USER } from '../actionTypes/usersAT';
 
 const initialState = { user: { points: 0 } };
@@ -22,3 +23,4 @@ export const usersReducer = (state = initialState, action) => {
             return state;
     }
 };
+
