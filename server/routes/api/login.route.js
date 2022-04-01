@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const { User } = require('../../db/models');
 
+
 router.post('/', async (req, res) => {
   try {
     const { user_email, user_password, } = req.body;
@@ -20,6 +21,7 @@ router.post('/', async (req, res) => {
   } catch (err) {
     return res.status(500).json(err);
   }
+
 });
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
+
   try {
     req.session.destroy()
     res.clearCookie('user_sid');
@@ -8,6 +9,7 @@ router.get('/', (req, res) => {
   } catch (err) {
     return res.status(500).json(err);
   }
+
 });
 
 module.exports = router;
