@@ -21,9 +21,14 @@ function GameQuestion({ question }) {
             setTimer((timer) => timer - 1);
         }, 1000);
 
-        setTimeout(() => {
+        const timeOut = setTimeout(() => {
+            console.log('timeout');
+            console.log(!wasClosed);
             clearInterval(answerTimer);
-            closeModal();
+            if (!wasClosed) {
+                clearTimeout(timeOut);
+                closeModal();
+            }
         }, 10000);
     };
 
@@ -63,13 +68,13 @@ function GameQuestion({ question }) {
                                 <h5 className="modal-title">
                                     Внимание, вопрос:
                                 </h5>
-                                <button
-                                    type="button"
-                                    onClick={closeModal}
-                                    className="close"
-                                    aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                {/*<button*/}
+                                {/*    type="button"*/}
+                                {/*    onClick={closeModal}*/}
+                                {/*    className="close"*/}
+                                {/*    aria-label="Close">*/}
+                                {/*    <span aria-hidden="true">&times;</span>*/}
+                                {/*</button>*/}
                             </div>
                             <div className="modal-body">
                                 <h4>{question.question_text}</h4>
@@ -88,19 +93,19 @@ function GameQuestion({ question }) {
                                 </div>
                             </div>
 
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-primary">
-                                    Ответить
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={closeModal}
-                                    className="btn btn-secondary">
-                                    Не знаю
-                                </button>
-                            </div>
+                            {/*<div className="modal-footer">*/}
+                            {/*    <button*/}
+                            {/*        type="button"*/}
+                            {/*        className="btn btn-primary">*/}
+                            {/*        Ответить*/}
+                            {/*    </button>*/}
+                            {/*    <button*/}
+                            {/*        type="button"*/}
+                            {/*        onClick={closeModal}*/}
+                            {/*        className="btn btn-secondary">*/}
+                            {/*        Не знаю*/}
+                            {/*    </button>*/}
+                            {/*</div>*/}
                         </div>
                     </div>
                 </div>
