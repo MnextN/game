@@ -12,6 +12,8 @@ function Nav(props) {
         navigate(data.data.url);
     };
 
+    const loggedUser = localStorage.getItem('user');
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
@@ -20,42 +22,60 @@ function Nav(props) {
                 </NavLink>
                 <div
                     className="collapse navbar-collapse"
-                    id="navbarNavAltMarkup"
-                >
+                    id="navbarNavAltMarkup">
                     <div className="navbar-nav">
                         <li>
                             <NavLink className="nav-item nav-link" to="/">
                                 Главная
                             </NavLink>
                         </li>
-                        <li>
-                            <NavLink className="nav-item nav-link" to="/game">
-                                Игра
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                className="nav-item nav-link"
-                                to="/register"
-                            >
-                                Регистрация
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="nav-item nav-link" to="/login">
-                                Войти
-                            </NavLink>
-                        </li>
-                        <li>
-                            <span
-                                style={{ cursor: 'pointer' }}
-                                className="nav-item nav-link"
-                                onClick={logout}
-                                to="/"
-                            >
-                                Выйти
-                            </span>
-                        </li>
+                        {loggedUser && (
+                            <>
+                                <li>
+                                    <NavLink
+                                        className="nav-item nav-link"
+                                        to="/game">
+                                        Игра
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        className="nav-item nav-link"
+                                        to="/profile">
+                                        Профиль
+                                    </NavLink>
+                                </li>
+                            </>
+                        )}
+                        {!loggedUser && (
+                            <>
+                                <li>
+                                    <NavLink
+                                        className="nav-item nav-link"
+                                        to="/register">
+                                        Регистрация
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink
+                                        className="nav-item nav-link"
+                                        to="/login">
+                                        Войти
+                                    </NavLink>
+                                </li>
+                            </>
+                        )}
+                        {loggedUser && (
+                            <li>
+                                <span
+                                    style={{ cursor: 'pointer' }}
+                                    className="nav-item nav-link"
+                                    onClick={logout}
+                                    to="/">
+                                    Выйти
+                                </span>
+                            </li>
+                        )}
                     </div>
                 </div>
             </div>
