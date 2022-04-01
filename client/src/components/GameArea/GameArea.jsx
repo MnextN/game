@@ -17,6 +17,7 @@ function GameArea(props) {
         async function getGame() {
             const res = await logoutAxios();
             const restopics = await topicAxios();
+            localStorage.setItem('points', user.points);
             user.points = 0;
             setTopics(() => restopics.data);
             dispatch({ type: INIT_QUESTIONS, payload: res.data });
@@ -28,7 +29,7 @@ function GameArea(props) {
     return (
         <div className="container col-6">
             <h1 className="text-center mb-5">СВОЯ ИГРА</h1>
-            <h2 className="text-center mb-5">Ваши очки:{user.points}</h2>
+            <h2 className="text-center mb-5">Ваше очкооо:{user.points}</h2>
 
             <table className={`table ${style.tablemain}`}>
                 <tbody>
